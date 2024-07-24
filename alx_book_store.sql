@@ -1,5 +1,6 @@
 -- Database: alx_book_store
 
+
 -- Drop database if it exists
 DROP DATABASE IF EXISTS alx_book_store;
 
