@@ -1,53 +1,54 @@
--- Database: alx_book_store
-
-
--- Drop database if it exists
-DROP DATABASE IF EXISTS alx_book_store;
+-- alx_book_store.sql
 
 -- Create database
 CREATE DATABASE alx_book_store;
 
--- Use the newly created database
+-- Use database
 USE alx_book_store;
 
--- Create the Authors table
+-- Create Authors table
 CREATE TABLE Authors (
-    author_id INT AUTO_INCREMENT PRIMARY KEY,
-    author_name VARCHAR(215) NOT NULL
+  author_id INT AUTO_INCREMENT,
+  author_name VARCHAR(215),
+  PRIMARY KEY (author_id)
 );
 
--- Create the Books table
+-- Create Books table
 CREATE TABLE Books (
-    book_id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(130) NOT NULL,
-    author_id INT,
-    price DOUBLE NOT NULL,
-    publication_date DATE,
-    FOREIGN KEY (author_id) REFERENCES Authors(author_id)
+  book_id INT AUTO_INCREMENT,
+  title VARCHAR(130),
+  author_id INT,
+  price DOUBLE,
+  publication_date DATE,
+  PRIMARY KEY (book_id),
+  FOREIGN KEY (author_id) REFERENCES Authors(author_id)
 );
 
--- Create the Customers table
+-- Create Customers table
 CREATE TABLE Customers (
-    customer_id INT AUTO_INCREMENT PRIMARY KEY,
-    customer_name VARCHAR(215) NOT NULL,
-    email VARCHAR(215) NOT NULL,
-    address TEXT
+  customer_id INT AUTO_INCREMENT,
+  customer_name VARCHAR(215),
+  email VARCHAR(215),
+  address TEXT,
+  PRIMARY KEY (customer_id)
 );
 
--- Create the Orders table
+-- Create Orders table
 CREATE TABLE Orders (
-    order_id INT AUTO_INCREMENT PRIMARY KEY,
-    customer_id INT,
-    order_date DATE NOT NULL,
-    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
+  order_id INT AUTO_INCREMENT,
+  customer_id INT,
+  order_date DATE,
+  PRIMARY KEY (order_id),
+  FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
 );
 
--- Create the Order_Details table
+-- Create Order_Details table
 CREATE TABLE Order_Details (
-    orderdetailid INT AUTO_INCREMENT PRIMARY KEY,
-    order_id INT,
-    book_id INT,
-    quantity DOUBLE NOT NULL,
-    FOREIGN KEY (order_id) REFERENCES Orders(order_id),
-    FOREIGN KEY (book_id) REFERENCES Books(book_id)
+  orderdetailid INT AUTO_INCREMENT,
+  order_id INT,
+  book_id INT,
+  quantity DOUBLE,
+  PRIMARY KEY (orderdetailid),
+  FOREIGN KEY (order_id) REFERENCES Orders(order_id),
+  FOREIGN KEY (book_id) REFERENCES Books(book_id)
 );
